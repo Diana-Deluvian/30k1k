@@ -8,7 +8,8 @@ const Book = ({
   bookname,
   author,
   source,
-  date
+  date,
+  handleRemoveBook
 }) => {
     const history = useHistory();
   return (
@@ -21,8 +22,11 @@ const Book = ({
           <div>Date: {new Date(date).toDateString()}</div>
         </div>
         <Button variant="primary" onClick={() => history.push(`/edit/${id}`)}>
-  Edit
-</Button>{' '}
+            Edit
+        </Button>{' '}
+        <Button variant="danger" onClick={() => handleRemoveBook(id)}>
+          Delete
+        </Button>
       </Card.Body>
     </Card>
   );
