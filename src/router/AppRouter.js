@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import AddBook from '../components/AddBook';
 import BooksList from '../components/BooksList';
 import EditBook from '../components/EditBook';
+
+import Word from '../components/Word'
 import useLocalStorage from '../hooks/useLocalStorage';
 import BooksContext from '../context/BooksContext';
 
@@ -18,12 +20,15 @@ const AppRouter = () => {
         <div className="main-content">
           <BooksContext.Provider value={{ books, setBooks }}>
             <Switch>
-              <Route component={BooksList} path="/" exact={true} />
-              <Route component={AddBook} path="/add" />
-              <Route component={EditBook} path="/edit/:id" />
-              <Route component={() => <Redirect to="/" />} />
+              <Route component={BooksList} path="/books" exact={true} />
+              <Route component={AddBook} path="/addBook" />
+              <Route component={EditBook} path="/editBook/:id" />
+              
             </Switch>
           </BooksContext.Provider>
+          <Switch>
+            <Route component={Word} path="/word" />
+          </Switch>
         </div>
       </div>
     </BrowserRouter>
