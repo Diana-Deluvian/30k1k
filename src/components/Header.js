@@ -7,11 +7,12 @@ const Header = () => {
     const [navigation, setNavigation] = useState(() => {
         if(location.pathname.toLowerCase().includes("word")) return '30k'
         else if(location.pathname.toLowerCase().includes("book")) return '1k'
+        return '';
     });
     useEffect(() => {
         if(location.pathname.toLowerCase().includes("word")) setNavigation('30k')
         else if(location.pathname.toLowerCase().includes("book")) setNavigation('1k')
-      });
+      },[location.pathname]);
   return (
     <header>
       <h1><span onClick={() => { history.push("/word"); }}>30k</span>
@@ -30,7 +31,7 @@ const Header = () => {
       <NavLink to="/addWord" className="link" activeClassName="active">
         Add Word
       </NavLink>
-      <NavLink to="/allWords" className="link" activeClassName="active">
+      <NavLink to="/words" className="link" activeClassName="active">
         All Words
       </NavLink>
       </div>
