@@ -37,7 +37,7 @@ const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      <div>
+      <div className="myContainer">
         <Header />
         <div className="main-content">
           <BooksContext.Provider value={{ books, setBooks }}>

@@ -1,15 +1,18 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import WordsContext from '../context/WordsContext';
 
 const Word = () => {
     const { words, setWords } = useContext(WordsContext);
-    let {wordname, meaning, example, additionalInfo, id } = words.at(-1);
+    let {wordname, meaning, example, additionalInfo, id } = words.at(0);
+    //gets the last word
     return (
-        <React.Fragment>
+        <div className="single-word">
       <h1>{wordname}</h1>
-      <p>{meaning}</p>
-      <p>{example}</p>
-    </React.Fragment>
+      <p className="type">verb</p>
+      <p className="definition">{meaning}</p>
+      <p className="example">"{example}"</p>
+      <p className="additionalInfo"></p>
+    </div>
     )
 }
 
