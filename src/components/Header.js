@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 const Header = () => {
     const history = useHistory();
@@ -46,10 +47,11 @@ const Header = () => {
         Add Book
       </NavLink>
       </div>
-          }
+          } 
 
           return <h1>Please select a category!</h1>
         })()}
+
     </header>
   );
 };

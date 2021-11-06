@@ -1,0 +1,44 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee+Shade&family=Concert+One&family=Creepster&family=Goblin+One&family=Milonga&family=New+Rocker&family=Old+Standard+TT&family=Pirata+One&family=Ruslan+Display&family=Saira+Stencil+One&family=Sancreek&family=UnifrakturCook:wght@700&display=swap");
+
+body {
+  color: white;
+  background: black;
+  text-align: center;
+}
+
+header {
+  font-size: 2rem;
+  h1 {
+    font-size: 4rem;
+    font-family: "Saira Stencil One";
+    padding: 0.5rem;
+    span {
+      margin: 0 0.5rem;
+    }
+  }
+  .links {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+    .link:link,
+    .link:visited {
+      padding: 5px 10px;
+      font-weight: 100;
+      margin: 1rem;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      transition: border 0.3s;
+      &.active {
+        font-weight: 500;
+      }
+    }
+
+    .link:hover,
+    .link:active {
+      border-bottom: 2px solid #fff;
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 const Word = ({
   id,
-  word,
+  wordname,
   meaning,
   example,
   handleRemoveWord
@@ -14,7 +14,7 @@ const Word = ({
   return (
     <Card style={{ width: '18rem' }} className="book">
       <Card.Body>
-        <Card.Title className="book-title">{word}</Card.Title>
+        <Card.Title className="book-title">{wordname}</Card.Title>
         <div className="book-details">
           <div>Definition: {meaning}</div>
           <div>Example: {example} </div>
