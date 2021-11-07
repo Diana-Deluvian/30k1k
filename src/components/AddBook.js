@@ -7,7 +7,7 @@ const AddBook = ({ history }) => {
 
   const handleOnSubmit = (book) => {
     setBooks([book, ...books]);
-    history.push('/');
+    history.push('/books');
   };
 
   return (

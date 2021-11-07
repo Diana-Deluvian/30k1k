@@ -7,7 +7,7 @@ const AddWord = ({ history }) => {
 
   const handleOnSubmit = (word) => {
     setWords([word, ...words]);
-    history.push('/');
+    history.push('/words');
   };
 
   return (
