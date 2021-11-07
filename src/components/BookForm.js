@@ -14,32 +14,19 @@ const BookForm = (props) => {
   
 
   const [errorMsg, setErrorMsg] = useState('');
-  const { bookname, author, source } = book;
+  const { bookname, author, source, additionalInfo } = book;
 
   const handleOnSubmit = (event) => {
-    event.preventDefault();
-    const values = [bookname, author, source];
-    let errorMsg = '';
-
-    const allFieldsFilled = values.every((field) => {
-      const value = `${field}`.trim();
-      return value !== '' && value !== '0';
-    });
-
-    if (allFieldsFilled) {
-      const book = {
-        id: uuidv4(),
-        bookname,
-        author,
-        source,
-        date: new Date()
-      };
-      props.handleOnSubmit(book);
-    } else {
-      errorMsg = 'Please fill out all the fields.';
+    event.preventDefault();    
+    const book = {
+      id: uuidv4(),
+      bookname,
+      author,
+      source,
+      additionalInfo}
+    
+    props.handleOnSubmit(book);
     }
-    setErrorMsg(errorMsg);
-  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,17 +37,17 @@ const BookForm = (props) => {
   };
 
   return (
-    <div className="main-form">
+    <div className="book-form">
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
       <Form onSubmit={handleOnSubmit}>
         <Form.Group controlId="name">
-          <Form.Label>Book Name</Form.Label>
+          <Form.Label>Book Title</Form.Label>
           <Form.Control
             className="input-control"
             type="text"
             name="bookname"
             value={bookname}
-            placeholder="Enter name of book"
+            placeholder="title of the book"
             onChange={handleInputChange}
           />
         </Form.Group>
@@ -71,22 +58,33 @@ const BookForm = (props) => {
             type="text"
             name="author"
             value={author}
-            placeholder="Enter name of author"
+            placeholder="author"
             onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group controlId="source">
-          <Form.Label>source</Form.Label>
+          <Form.Label>Source</Form.Label>
           <Form.Control
             className="input-control"
             type="text"
             name="source"
             value={source}
-            placeholder="Enter source"
+            placeholder="where did you hear about it?"
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="submit-btn">
+        <Form.Group controlId="additionalInfo">
+          <Form.Label>Additional Information</Form.Label>
+          <Form.Control
+            className="input-control"
+            as="textarea"
+            name="additionalInfo"
+            value={additionalInfo}
+            placeholder="other relevant information"
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Button variant="light" type="submit" className="submit-btn">
           Submit
         </Button>
       </Form>

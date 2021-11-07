@@ -8,23 +8,23 @@ const Book = ({
   bookname,
   author,
   source,
-  date,
+  additionalInfo,
   handleRemoveBook
 }) => {
     const history = useHistory();
   return (
-    <Card style={{ width: '18rem' }} className="book">
+    <Card style={{ maxWidth: '80ch' }} className="book">
       <Card.Body>
         <Card.Title className="book-title">{bookname}</Card.Title>
         <div className="book-details">
           <div>Author: {author}</div>
           <div>source: {source} </div>
-          <div>Date: {new Date(date).toDateString()}</div>
+          <div>Additional Information: {additionalInfo} </div>
         </div>
-        <Button variant="primary" onClick={() => history.push(`/editBook/${id}`)}>
+        <Button variant="light" onClick={() => history.push(`/editBook/${id}`)}>
             Edit
         </Button>{' '}
-        <Button variant="danger" onClick={() => handleRemoveBook(id)}>
+        <Button variant="dark" onClick={() => handleRemoveBook(id)}>
           Delete
         </Button>
       </Card.Body>

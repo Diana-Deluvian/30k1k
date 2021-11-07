@@ -11,7 +11,7 @@ const EditBook = ({ history }) => {
   const handleOnSubmit = (book) => {
     const filteredBooks = books.filter((book) => book.id !== id);
     setBooks([book, ...filteredBooks]);
-    history.push('/');
+    history.push('/books');
   };
 
   return (

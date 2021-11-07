@@ -11,7 +11,7 @@ const EditWord = ({ history }) => {
   const handleOnSubmit = (word) => {
     const filteredWords = words.filter((word) => word.id !== id);
     setWords([word, ...filteredWords]);
-    history.push('/');
+    history.push('/words');
   };
 
   return (
