@@ -14,17 +14,19 @@ import BooksContext from '../context/BooksContext';
 import WordsContext from '../context/WordsContext';
 
 const DATA = [{
-  wordname: "diana",
-  meaning: "fire",
-  example: "diana is fire",
-  additionalInfo: "yo",
+  wordname: "delienation",
+  type: "verb",
+  meaning: "noun - the action of describing or portraying something precisely; the action of indicating the exact position of a border or boundary",
+  example: "the artist's exquisite delineation of costume and jewellery",
+  additionalInfo: "the artist's exquisite delineation of costume and jewellery",
   id: "1"
 },
 {
-  wordname: "diana",
-  meaning: "fire",
-  example: "diana is fire",
-  additionalInfo: "",
+  wordname: "mendacious",
+  type: "yolo",
+  meaning: "adjective - not telling the truth; lying",
+  example: "mendacious propaganda",
+  additionalInfo: "the artist's exquisite delineation of costume and jewellery",
   id: "2"
 }
 ]

@@ -3,7 +3,8 @@ import WordsContext from '../context/WordsContext';
 
 const Word = () => {
     const { words, setWords } = useContext(WordsContext);
-    let {wordname, meaning, example, additionalInfo, id } = words.at(0);
+    let {wordname, meaning, example, additionalInfo, type, id } = words.at(-1);
+    console.log(words);
     //gets the last word
     return (
         <div className="single-word">
@@ -11,7 +12,7 @@ const Word = () => {
       <p className="type">verb</p>
       <p className="definition">{meaning}</p>
       <p className="example">"{example}"</p>
-      <p className="additionalInfo"></p>
+      <p className="additionalInfo">{additionalInfo}</p>
     </div>
     )
 }

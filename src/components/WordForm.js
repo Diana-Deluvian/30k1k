@@ -14,7 +14,7 @@ const WordForm = (props) => {
   
 
   const [errorMsg, setErrorMsg] = useState('');
-  const { wordname, meaning, example } = word;
+  const { wordname, type, meaning, example, additionalInfo } = word;
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -31,43 +31,65 @@ const WordForm = (props) => {
   };
 
   return (
-    <div className="main-form">
+    <div className="word-form">
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
       <Form onSubmit={handleOnSubmit}>
         <Form.Group controlId="wordname">
-          <Form.Label>Word Name</Form.Label>
+          <Form.Label>Word</Form.Label>
           <Form.Control
             className="input-control"
             type="text"
             name="wordname"
             value={wordname}
-            placeholder="Enter name of word"
+            placeholder="word"
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="type">
+          <Form.Label>Type</Form.Label>
+          <Form.Control
+            className="input-control"
+            type="text"
+            name="type"
+            value={type}
+            placeholder="type"
             onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group controlId="meaning">
-          <Form.Label>Word Author</Form.Label>
+          <Form.Label>Meaning</Form.Label>
           <Form.Control
             className="input-control"
-            type="text"
+            as="textarea"
             name="meaning"
             value={meaning}
-            placeholder="Enter name of meaning"
+            placeholder="the dictionary definition of the word"
             onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group controlId="example">
-          <Form.Label>example</Form.Label>
+          <Form.Label>Example</Form.Label>
           <Form.Control
             className="input-control"
-            type="text"
+            as="textarea"
             name="example"
             value={example}
-            placeholder="Enter example"
+            placeholder="demonstrate the use of the word"
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="submit-btn">
+        <Form.Group controlId="additionalInfo">
+          <Form.Label>Additional Information</Form.Label>
+          <Form.Control
+            className="input-control"
+            as="textarea"
+            name="additionalInfo"
+            value={additionalInfo}
+            placeholder="any other relevant information goes here"
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Button variant="light" type="submit" className="submit-btn">
           Submit
         </Button>
       </Form>

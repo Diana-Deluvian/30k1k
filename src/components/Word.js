@@ -8,21 +8,22 @@ const Word = ({
   wordname,
   meaning,
   example,
+  type,
   handleRemoveWord
 }) => {
     const history = useHistory();
   return (
-    <Card style={{ width: '18rem' }} className="book">
+    <Card style={{ maxWidth: '80ch'}} className="word">
       <Card.Body>
-        <Card.Title className="book-title">{wordname}</Card.Title>
-        <div className="book-details">
-          <div>Definition: {meaning}</div>
+        <Card.Title className="word-title">{wordname}</Card.Title>
+        <div className="word-details">
+          <div>Definition: {type} - {meaning}</div>
           <div>Example: {example} </div>
         </div>
-        <Button variant="primary" onClick={() => history.push(`/editWord/${id}`)}>
+        <Button variant="light" onClick={() => history.push(`/editWord/${id}`)}>
             Edit
         </Button>{' '}
-        <Button variant="danger" onClick={() => handleRemoveWord(id)}>
+        <Button variant="dark" onClick={() => handleRemoveWord(id)}>
           Delete
         </Button>
       </Card.Body>

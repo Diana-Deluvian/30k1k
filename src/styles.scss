@@ -74,4 +74,35 @@ header {
     color: $gray-500;
     margin-top: -1rem;
   }
+
+  .additionalInfo {
+    font-size: 1rem;
+    color: $gray-500;
+  }
+}
+
+.word {
+  background-color: black;
+  margin-bottom: 1rem;
+  * {
+    padding: 0.5rem;
+  }
+
+  &-title {
+    margin-bottom: 0;
+    font-family: "Pirata One";
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    width: 6rem;
+    margin: 0 0.5rem;
+  }
+
+  &-form {
+    min-width: 60ch;
+    * {
+      margin: 0.5rem 0;
+    }
+  }
 }

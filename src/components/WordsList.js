@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Word from './Word';
 import React, { useContext } from 'react';
 import WordsContext from '../context/WordsContext';
