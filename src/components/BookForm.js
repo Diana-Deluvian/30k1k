@@ -40,7 +40,7 @@ const BookForm = (props) => {
     <div className="book-form">
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
       <Form onSubmit={handleOnSubmit}>
-        <Form.Group controlId="name">
+        <Form.Group controlId="bookname">
           <Form.Label>Book Title</Form.Label>
           <Form.Control
             className="input-control"
