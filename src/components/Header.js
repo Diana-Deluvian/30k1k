@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 const Header = () => {
     const history = useHistory();
@@ -8,11 +7,13 @@ const Header = () => {
     const [navigation, setNavigation] = useState(() => {
         if(location.pathname.toLowerCase().includes("word")) return '30k'
         else if(location.pathname.toLowerCase().includes("book")) return '1k'
+        else if(location.pathname.toLowerCase().includes("login")) return 'login'
         return '';
     });
     useEffect(() => {
         if(location.pathname.toLowerCase().includes("word")) setNavigation('30k')
         else if(location.pathname.toLowerCase().includes("book")) setNavigation('1k')
+        else if(location.pathname.toLowerCase().includes("login")) return 'login'
       },[location.pathname]);
   return (
     <header>
@@ -47,7 +48,8 @@ const Header = () => {
         Add Book
       </NavLink>
       </div>
-          } 
+          }
+          if (navigation === 'login') { return  }
 
           return <h1>Please select a category!</h1>
         })()}

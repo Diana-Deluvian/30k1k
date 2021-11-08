@@ -139,8 +139,16 @@ header {
 }
 
 .login-form {
-  min-width: 40ch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   * {
-    margin: 0.5rem 0;
+    width: 40ch;
+    margin: 1rem 0;
+  }
+
+  .btn {
+    width: 6rem;
   }
 }

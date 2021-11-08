@@ -15,6 +15,7 @@ import BooksContext from '../context/BooksContext';
 import WordsContext from '../context/WordsContext';
 
 import Login from '../components/Login';
+import useToken from '../hooks/useToken'
 
 const DATA = [{
   wordname: "delienation",
@@ -38,6 +39,8 @@ const DATA = [{
 const AppRouter = () => {
   const [books, setBooks] = useLocalStorage('books', []);
   const [words, setWords] = useState(DATA);
+
+  const { token, setToken } = useToken();
   
 
   return (
@@ -66,7 +69,7 @@ const AppRouter = () => {
             <Route component={Login} path="/login" exact={true} />
           </Switch>
         </div>
-      </div>
+      </div> 
     </BrowserRouter>
   );
 };
