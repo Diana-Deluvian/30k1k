@@ -137,3 +137,10 @@ header {
     }
   }
 }
+
+.login-form {
+  min-width: 40ch;
+  * {
+    margin: 0.5rem 0;
+  }
+}

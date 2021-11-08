@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+
 import Header from '../components/Header';
 import AddBook from '../components/AddBook';
 import BooksList from '../components/BooksList';
@@ -12,6 +13,8 @@ import EditWord from '../components/EditWord';
 import useLocalStorage from '../hooks/useLocalStorage';
 import BooksContext from '../context/BooksContext';
 import WordsContext from '../context/WordsContext';
+
+import Login from '../components/Login';
 
 const DATA = [{
   wordname: "delienation",
@@ -59,6 +62,9 @@ const AppRouter = () => {
               
             </Switch>
           </WordsContext.Provider>
+          <Switch>
+            <Route component={Login} path="/login" exact={true} />
+          </Switch>
         </div>
       </div>
     </BrowserRouter>
