@@ -8,32 +8,33 @@ const BookForm = (props) => {
       bookname: props.book ? props.book.bookname : '',
       author: props.book ? props.book.author : '',
       source: props.book ? props.book.source : '',
-      date: props.book ? props.book.date : ''
+      additionalInfo: props.book ? props.book.additionalInfo : ''
     };
   });
-  
+
 
   const [errorMsg, setErrorMsg] = useState('');
   const { bookname, author, source, additionalInfo } = book;
 
   const handleOnSubmit = (event) => {
-    event.preventDefault();    
+    event.preventDefault();
     const book = {
       id: uuidv4(),
       bookname,
       author,
       source,
-      additionalInfo}
-    
-    props.handleOnSubmit(book);
+      additionalInfo
     }
+
+    props.handleOnSubmit(book);
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-        setBook((prevState) => ({
-          ...prevState,
-          [name]: value
-        }));
+    setBook((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   return (

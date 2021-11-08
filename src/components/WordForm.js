@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, ToggleButton, ToggleButtonGroup, ButtonGroup } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 
 const WordForm = (props) => {
@@ -11,10 +11,16 @@ const WordForm = (props) => {
       additionalInfo: props.word ? props.word.additionalInfo : ''
     };
   });
+  const categories = ['Noun', 'Adjective', 'Verb', 'Other'];
   
+  const [type, setType] = useState(props.word ? props.word.type : []);
+  const handleChange = (val) => { 
+    console.log(val)
+    setType(val); }
+
 
   const [errorMsg, setErrorMsg] = useState('');
-  const { wordname, type, meaning, example, additionalInfo } = word;
+  const { wordname, meaning, example, additionalInfo } = word;
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -29,6 +35,9 @@ const WordForm = (props) => {
           [name]: value
         }));
   };
+
+
+  
 
   return (
     <div className="word-form">
@@ -45,17 +54,22 @@ const WordForm = (props) => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Form.Group controlId="type">
-          <Form.Label>Type</Form.Label>
-          <Form.Control
-            className="input-control"
-            type="text"
-            name="type"
-            value={type}
-            placeholder="type"
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+        <Form.Label>Type</Form.Label> <br></br>
+        <ToggleButtonGroup type="checkbox" value={type} onChange={handleChange}>
+        
+  {categories.map((category, idx) => (
+    <ToggleButton
+      id={`radio-${idx}`}
+      variant={type.includes(category) ? "light" : "dark"}
+      name="radio"
+      value={category}
+      checked={type.includes(category)}
+      
+    >
+      {category}
+    </ToggleButton>
+  ))}
+</ToggleButtonGroup>
         <Form.Group controlId="meaning">
           <Form.Label>Meaning</Form.Label>
           <Form.Control

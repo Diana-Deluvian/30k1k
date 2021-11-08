@@ -109,6 +109,9 @@ header {
     * {
       margin: 0.5rem 0;
     }
+    .btn {
+      box-shadow: none !important;
+    }
   }
 }
 
@@ -134,6 +137,9 @@ header {
     min-width: 60ch;
     * {
       margin: 0.5rem 0;
+    }
+    .btn {
+      box-shadow: none;
     }
   }
 }
