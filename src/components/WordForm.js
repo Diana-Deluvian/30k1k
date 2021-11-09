@@ -58,18 +58,17 @@ const WordForm = (props) => {
         <ToggleButtonGroup type="checkbox" value={type} onChange={handleChange}>
         
   {categories.map((category, idx) => (
-    <ToggleButton
-      id={`radio-${idx}`}
-      variant={type.includes(category) ? "light" : "dark"}
-      name="radio"
-      value={category}
-      checked={type.includes(category)}
-      
-    >
-      {category}
-    </ToggleButton>
-  ))}
-</ToggleButtonGroup>
+      <ToggleButton
+        id={`radio-${idx}`}
+        variant={type.includes(category) ? "light" : "dark"}
+        name="radio"
+        value={category}
+        checked={type.includes(category)}
+        >
+        {category}
+      </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
         <Form.Group controlId="meaning">
           <Form.Label>Meaning</Form.Label>
           <Form.Control

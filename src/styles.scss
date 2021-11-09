@@ -112,6 +112,9 @@ header {
     .btn {
       box-shadow: none !important;
     }
+    label[for="radio-1"]:focus {
+      background-color: #ffffff !important;
+    }
   }
 }
 
@@ -157,4 +160,21 @@ header {
   .btn {
     width: 6rem;
   }
+}
+
+.d-inline-block {
+  min-width: 50ch;
+  max-width: 50ch;
+  color: black;
+  text-align: left;
+  padding: 1rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0;
+
+  * {
+    margin: 0;
+  }
+}
+
+#react-2-select-listbox {
 }

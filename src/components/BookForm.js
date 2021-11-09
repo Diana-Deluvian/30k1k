@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
+import BookSelect from "./BookSelect";
 
 const BookForm = (props) => {
   const [book, setBook] = useState(() => {
@@ -52,6 +53,8 @@ const BookForm = (props) => {
             onChange={handleInputChange}
           />
         </Form.Group>
+        <Form.Label>Category:</Form.Label><br></br>
+        <BookSelect />
         <Form.Group controlId="author">
           <Form.Label>Book Author</Form.Label>
           <Form.Control
@@ -85,6 +88,8 @@ const BookForm = (props) => {
             onChange={handleInputChange}
           />
         </Form.Group>
+
+        
         <Button variant="light" type="submit" className="submit-btn">
           Submit
         </Button>
@@ -94,3 +99,4 @@ const BookForm = (props) => {
 };
 
 export default BookForm;
+
