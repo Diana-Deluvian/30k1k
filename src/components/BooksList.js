@@ -17,7 +17,7 @@ const BooksList = () => {
 
   let newBooks = books.filter(book => {
     for(const property in book) 
-      if(book[property].includes(searchTerm)) return true
+      if(book[property].toLowerCase().includes(searchTerm.toLowerCase())) return true
   })
 
   return (

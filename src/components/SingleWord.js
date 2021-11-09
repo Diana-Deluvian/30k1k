@@ -4,9 +4,7 @@ import _ from 'lodash';
 import { Button } from 'react-bootstrap';
 
 function randomWord(length) {
-  let weight = Math.ceil(Math.random() * Math.ceil(Math.log(length))) || 1;
-  
-  //in the event that there is exactly 1 word, weight would be 0, blame math
+  let weight = Math.ceil(Math.random() * Math.ceil(Math.log(length)));
 
   return Math.floor(Math.random() * (Math.floor(length/weight)));
   
