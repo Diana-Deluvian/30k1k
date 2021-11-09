@@ -57,11 +57,12 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .single-word {
   max-width: 80ch;
+  justify-self: center;
+  margin-top: 3rem;
   h1 {
     font-size: 3rem;
     font-family: "Pirata One";
@@ -147,6 +148,11 @@ header {
   }
 }
 
+#book-list-search {
+  width: 40ch;
+  align-self: baseline;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -174,7 +180,4 @@ header {
   * {
     margin: 0;
   }
-}
-
-#react-2-select-listbox {
 }
