@@ -3,11 +3,24 @@ import WordsContext from '../context/WordsContext';
 import _ from 'lodash';
 import { Button } from 'react-bootstrap';
 
+function randomWord(length) {
+  let weight = Math.ceil(Math.random() * Math.ceil(Math.log(length))) || 1;
+  
+  //in the event that there is exactly 1 word, weight would be 0, blame math
+
+  return Math.floor(Math.random() * (Math.floor(length/weight)));
+  
+  //this is a long and complicated way of saying, we weight the result
+  //using natural log of the lenght of the words is over, e.g 140 ~ e^5
+}
+
 const Word = () => {
   const { words, setWords } = useContext(WordsContext);
   const [word, setWord] = useState(words.at(-1) || {});
     //gets the last word
     let {wordname, meaning, example, additionalInfo, type, id } = word; 
+
+    
 
   return (
     <React.Fragment>
@@ -19,9 +32,7 @@ const Word = () => {
             <p className="definition">{meaning}</p>
             <p className="example">"{example}"</p>
             <p className="additionalInfo">{additionalInfo}</p>
-            <Button variant="light" onClick={()=> { 
-            let newWord = words.at(Math.floor(Math.random() * words.length))
-            setWord(newWord) } }>Random!</Button>
+            <Button variant="light" onClick={ () => setWord(words.at(randomWord(words.length))) }>Random!</Button>
           </div>
           ) : (
             <p className="message">No words available. Please add some words.</p>
@@ -33,3 +44,13 @@ const Word = () => {
 }
 
 export default Word;
+
+
+/*
+function randomWord() {
+  let weight = Math.pow(10, Math.floor(Math.random() * Math.ceil(Math.log(words.length))))
+  let newWord = words.at(Math.floor(Math.random() * (Math.floor(words.length/ weight))))
+  setWord(newWord)
+  //leaving this as an interesting algorithm, albeit not fit for my purposes here
+}
+*/
