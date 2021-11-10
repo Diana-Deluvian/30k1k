@@ -9,22 +9,33 @@ const BookForm = (props) => {
       bookname: props.book ? props.book.bookname : '',
       author: props.book ? props.book.author : '',
       source: props.book ? props.book.source : '',
-      additionalInfo: props.book ? props.book.additionalInfo : ''
+      additionalInfo: props.book ? props.book.additionalInfo : '',
+      id: props.book ? props.book.id : uuidv4(),
+      optionSelected: props.book ? props.book.optionSelected : null,
     };
   });
 
 
   const [errorMsg, setErrorMsg] = useState('');
-  const { bookname, author, source, additionalInfo } = book;
+  const { bookname, author, source, additionalInfo, id, optionSelected } = book;
+
+  const handleChange = (selected) => {
+    setBook((prevState) => ({
+      ...prevState,
+      optionSelected: selected
+    }));
+  };
+
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const book = {
-      id: uuidv4(),
+      id,
       bookname,
       author,
       source,
-      additionalInfo
+      additionalInfo,
+      optionSelected
     }
 
     props.handleOnSubmit(book);
@@ -54,7 +65,7 @@ const BookForm = (props) => {
           />
         </Form.Group>
         <Form.Label>Category:</Form.Label><br></br>
-        <BookSelect />
+        <BookSelect optionSelected={optionSelected} handleChange={handleChange} />
         <Form.Group controlId="author">
           <Form.Label>Book Author</Form.Label>
           <Form.Control

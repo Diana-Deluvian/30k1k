@@ -8,7 +8,8 @@ const WordForm = (props) => {
       wordname: props.word ? props.word.wordname : '',
       meaning: props.word ? props.word.meaning : '',
       example: props.word ? props.word.example : '',
-      additionalInfo: props.word ? props.word.additionalInfo : ''
+      additionalInfo: props.word ? props.word.additionalInfo : '',
+      id: props.word ? props.word.id : uuidv4()
     };
   });
   const categories = ['Noun', 'Adjective', 'Verb', 'Other'];
@@ -24,7 +25,7 @@ const WordForm = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-
+    word.type = type;
     props.handleOnSubmit(word);
   };
 

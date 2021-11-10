@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { default as ReactSelect } from "react-select";
 
 import { components } from "react-select";
 
-const colourOptions = [
+const categories = [
     { value: "Feminism", label: "Feminism" },
     { value: "Racism", label: "Racism" },
     { value: "Fantasy", label: "Fantasy" },
@@ -18,6 +18,7 @@ const colourOptions = [
   ];
 
 const Option = (props) => {
+  console.log(props);
     return (
       <div >
         <components.Option {...props} >
@@ -52,23 +53,13 @@ const Option = (props) => {
     })
     }
 
-export default class BookSelect extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        optionSelected: null
-      };
-    }
-  
-    handleChange = (selected) => {
-      this.setState({
-        optionSelected: selected
-      });
-    };
+const BookSelect = (props) => {
+    const [optionSelected, setOptionSelected] = useState(props.optionSelected ? props.optionSelected : null);
 
-    
-  
-    render() {
+    const handleChange = (selected) => {
+      setOptionSelected(selected);
+      props.handleChange(selected);
+    }  
       return (
         <span
           className="d-inline-block"
@@ -77,20 +68,21 @@ export default class BookSelect extends Component {
           data-content="Please select account(s)"
         >
           <ReactSelect
-            options={colourOptions}
+            options={categories}
             isMulti
             closeMenuOnSelect={false}
             hideSelectedOptions={false}
             components={{
               Option
             }}
-            onChange={this.handleChange}
+            onChange={handleChange}
             allowSelectAll={true}
-            value={this.state.optionSelected}
+            value={optionSelected}
             styles={colourStyles}
           />
         </span>
       );
     }
-  }
   
+  
+  export default BookSelect;
