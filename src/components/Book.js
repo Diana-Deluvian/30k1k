@@ -8,18 +8,22 @@ const Book = ({
   bookname,
   author,
   source,
+  optionSelected,
   additionalInfo,
   handleRemoveBook
 }) => {
     const history = useHistory();
+
+    const categories = optionSelected && optionSelected.map(option => option.value).join (", ")
   return (
     <Card style={{ maxWidth: '80ch' }} className="book">
       <Card.Body>
         <Card.Title className="book-title">{bookname}</Card.Title>
         <div className="book-details">
           <div>Author: {author}</div>
+          <div>Categories: { categories } </div>
           <div>source: {source} </div>
-          <div>Additional Information: {additionalInfo} </div>
+          <div className="additionalInfo">{additionalInfo} </div>
         </div>
         <Button variant="light" onClick={() => history.push(`/editBook/${id}`)}>
             Edit

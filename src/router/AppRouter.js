@@ -19,7 +19,7 @@ import useToken from '../hooks/useToken'
 
 const DATA = [{
   wordname: "delienation",
-  type: "verb",
+  type: ["verb"],
   meaning: "noun - the action of describing or portraying something precisely; the action of indicating the exact position of a border or boundary",
   example: "the artist's exquisite delineation of costume and jewellery",
   additionalInfo: "the artist's exquisite delineation of costume and jewellery",
@@ -27,7 +27,7 @@ const DATA = [{
 },
 {
   wordname: "mendacious",
-  type: "yolo",
+  type: ["adjective"],
   meaning: "adjective - not telling the truth; lying",
   example: "mendacious propaganda",
   additionalInfo: "the artist's exquisite delineation of costume and jewellery",

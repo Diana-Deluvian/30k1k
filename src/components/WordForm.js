@@ -12,7 +12,7 @@ const WordForm = (props) => {
       id: props.word ? props.word.id : uuidv4()
     };
   });
-  const categories = ['Noun', 'Adjective', 'Verb', 'Other'];
+  const categories = ['noun', 'adjective', 'verb', 'other'];
   
   const [type, setType] = useState(props.word ? props.word.type : []);
   const handleChange = (val) => { 

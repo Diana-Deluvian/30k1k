@@ -105,6 +105,11 @@ header {
     margin: 0 0.5rem;
   }
 
+  .additionalInfo {
+    font-size: 0.8rem;
+    color: $gray-500;
+  }
+
   &-form {
     min-width: 60ch;
     * {
@@ -135,6 +140,11 @@ header {
   .btn {
     width: 6rem;
     margin: 0 0.5rem;
+  }
+
+  .additionalInfo {
+    font-size: 0.8rem;
+    color: $gray-500;
   }
 
   &-form {
