@@ -29,7 +29,7 @@ const BooksList = () => {
   return (
     <React.Fragment>
       <div className="book-list">
-      <Form.Group controlId="searchTerm">
+      <Form.Group className="justify-content-center" controlId="searchTerm">
           <Form.Control
             className="input-control mt-3 mb-2"
             id="book-list-search"

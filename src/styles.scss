@@ -157,10 +157,12 @@ header {
     }
   }
 }
-
+.testingthis {
+  display: flex;
+  justify-content: center;
+}
 #book-list-search {
   width: 40ch;
-  align-self: baseline;
 }
 
 .login-form {
