@@ -10,6 +10,7 @@ const EditBook = ({ history }) => {
   const bookToEdit = books.find((book) => book._id === _id);
 
   const handleOnSubmit = (book, _id) => {
+    console.log(_id);
     fetch('http://localhost:8080/book/:'+_id, {
       method: 'PUT',
       credentials: 'include',
@@ -17,14 +18,14 @@ const EditBook = ({ history }) => {
       body: JSON.stringify(book),  
     }).then(response => response.json())
     .then(data => {
-      console.log(data);
+      console.log(data, _id, books);
       setBooks([data, ...books.filter(elem => elem._id !== _id)]); })
     history.push('/books');
   }
 
   return (
     <div>
-      <BookForm book={bookToEdit} handleOnSubmit={handleOnSubmit} />
+      <BookForm book={bookToEdit} handleOnSubmit={handleOnSubmit} isEditing={true} />
     </div>
   );
 };

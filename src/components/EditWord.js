@@ -17,7 +17,6 @@ const EditWord = ({ history }) => {
       body: JSON.stringify(word),  
     }).then(response => response.json())
     .then(data => {
-      console.log(data);
       setWords([data, ...words.filter(elem => elem._id !== _id)]); })
     history.push('/words');
   }

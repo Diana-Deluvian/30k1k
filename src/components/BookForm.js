@@ -26,11 +26,6 @@ const BookForm = (props) => {
   };
 
 
-  const handleOnSubmit = (event) => {
-    event.preventDefault();
-    props.handleOnSubmit(book);
-  }
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setBook((prevState) => ({
@@ -38,6 +33,15 @@ const BookForm = (props) => {
       [name]: value
     }));
   };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    if(props.isEditing) {
+      let _id = props.book._id;
+      props.handleOnSubmit({...book }, _id)
+    }
+    else props.handleOnSubmit(book);
+  }
 
   return (
     <div className="book-form">
