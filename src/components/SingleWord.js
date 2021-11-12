@@ -14,7 +14,8 @@ function randomWord(length) {
 
 const Word = () => {
   const { words, setWords } = useContext(WordsContext);
-  const [word, setWord] = useState(words.at(-1) || {});
+  console.log(words);
+  const [word, setWord] = useState(words && words.at(-1) || {});
     //gets the last word
     let {wordname, meaning, example, additionalInfo, type, id } = word; 
 

@@ -6,9 +6,19 @@ const AddWord = ({ history }) => {
   const { words, setWords } = useContext(WordsContext);
 
   const handleOnSubmit = (word) => {
-    setWords([word, ...words]);
+    fetch('http://localhost:8080/word', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(word),
+      
+    }).then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setWords([data, ...words]); })
     history.push('/words');
-  };
+  }
+
 
   return (
     <React.Fragment>

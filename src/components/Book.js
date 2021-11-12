@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 const Book = ({
-  id,
+  _id,
   bookname,
   author,
   source,
@@ -25,10 +25,10 @@ const Book = ({
           <div>source: {source} </div>
           <div className="additionalInfo">{additionalInfo} </div>
         </div>
-        <Button variant="light" onClick={() => history.push(`/editBook/${id}`)}>
+        <Button variant="light" onClick={() => history.push(`/editBook/${_id}`)}>
             Edit
         </Button>{' '}
-        <Button variant="dark" onClick={() => handleRemoveBook(id)}>
+        <Button variant="dark" onClick={() => handleRemoveBook(_id)}>
           Delete
         </Button>
       </Card.Body>

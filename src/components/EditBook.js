@@ -5,14 +5,22 @@ import BooksContext from '../context/BooksContext';
 
 const EditBook = ({ history }) => {
   const { books, setBooks } = useContext(BooksContext);
-  const { id } = useParams();
-  const bookToEdit = books.find((book) => book.id === id);
+  const { _id } = useParams();
+  console.log(_id);
+  const bookToEdit = books.find((book) => book._id === _id);
 
-  const handleOnSubmit = (book) => {
-    const filteredBooks = books.filter((book) => book.id !== id);
-    setBooks([book, ...filteredBooks]);
+  const handleOnSubmit = (book, _id) => {
+    fetch('http://localhost:8080/book/:'+_id, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(book),  
+    }).then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setBooks([data, ...books.filter(elem => elem._id !== _id)]); })
     history.push('/books');
-  };
+  }
 
   return (
     <div>

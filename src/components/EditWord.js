@@ -5,18 +5,26 @@ import WordsContext from '../context/WordsContext';
 
 const EditWord = ({ history }) => {
   const { words, setWords } = useContext(WordsContext);
-  const { id } = useParams();
-  const wordToEdit = words.find((word) => word.id === id);
+  const { _id } = useParams();
+  console.log(_id)
+  const wordToEdit = words.find((word) => word._id === _id);
 
-  const handleOnSubmit = (word) => {
-    const filteredWords = words.filter((word) => word.id !== id);
-    setWords([word, ...filteredWords]);
+  const handleOnSubmit = (word, _id) => {
+    fetch('http://localhost:8080/word/:'+_id, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(word),  
+    }).then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setWords([data, ...words.filter(elem => elem._id !== _id)]); })
     history.push('/words');
-  };
+  }
 
   return (
     <div>
-      <WordForm word={wordToEdit} handleOnSubmit={handleOnSubmit} />
+      <WordForm word={wordToEdit} handleOnSubmit={handleOnSubmit} isEditing={true} />
     </div>
   );
 };

@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
+const loginUser = (username, password) => {
+    fetch('http://localhost:8080/login', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify(username, password)
     })
-      .then(data => data.json())
+      .then(data => {
+        console.log("here", data);
+        //console.log(data.body);
+      })
    }
+
+  /* const loginUser = (login) => {
+    Axios({
+      method: "POST",
+      data: {
+        username: login.username,
+        password: login.password,
+      },
+      withCredentials: true,
+      url: "http://localhost:8080/login",
+    }).then((res) => console.log(res));
+  }; */
 
 const Login = ({setToken}) => {
     const [login, setLogin] = useState();
@@ -20,6 +36,7 @@ const Login = ({setToken}) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+        console.log(name, value);
             setLogin((prevState) => ({
               ...prevState,
               [name]: value
@@ -28,11 +45,8 @@ const Login = ({setToken}) => {
 
     const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
-        username,
-        password
-    });
-    setToken(token);
+   loginUser(login);
+    //setToken(token);
     }
 
       return (
@@ -66,9 +80,9 @@ const Login = ({setToken}) => {
           </Form>
         </div>
       );
-      Login.propTypes = {
-        setToken: PropTypes.func.isRequired
-  }
+     /* Login.propTypes = {
+        setToken: PropTypes.func.isRequired 
+  }*/
 }
 
 export default Login;

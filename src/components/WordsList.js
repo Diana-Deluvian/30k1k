@@ -6,8 +6,14 @@ import WordsContext from '../context/WordsContext';
 
 const WordsList = () => {
   const { words, setWords } = useContext(WordsContext);
-  const handleRemoveWord = (id) => {
-    setWords(words.filter((word) => word.id !== id));
+  const handleRemoveWord = (_id) => {
+    fetch('http://localhost:8080/word/:'+_id, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {'Content-Type':'application/json'}  
+    }).then(response => response.json())
+    .then(data => {
+      setWords(words.filter(elem => elem._id !== _id)); })
   };
 
   return (

@@ -10,14 +10,13 @@ const BookForm = (props) => {
       author: props.book ? props.book.author : '',
       source: props.book ? props.book.source : '',
       additionalInfo: props.book ? props.book.additionalInfo : '',
-      id: props.book ? props.book.id : uuidv4(),
       optionSelected: props.book ? props.book.optionSelected : null,
     };
   });
 
 
   const [errorMsg, setErrorMsg] = useState('');
-  const { bookname, author, source, additionalInfo, id, optionSelected } = book;
+  const { bookname, author, source, additionalInfo, optionSelected } = book;
 
   const handleChange = (selected) => {
     setBook((prevState) => ({
@@ -29,15 +28,6 @@ const BookForm = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const book = {
-      id,
-      bookname,
-      author,
-      source,
-      additionalInfo,
-      optionSelected
-    }
-
     props.handleOnSubmit(book);
   }
 

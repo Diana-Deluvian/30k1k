@@ -6,9 +6,17 @@ const AddBook = ({ history }) => {
   const { books, setBooks } = useContext(BooksContext);
 
   const handleOnSubmit = (book) => {
-    setBooks([book, ...books]);
+    console.log(book);
+    fetch('http://localhost:8080/book', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(book),
+      
+    }).then(response => response.json())
+    .then(data => {setBooks([data, ...books]); })
     history.push('/books');
-  };
+  }
 
   return (
     <React.Fragment>

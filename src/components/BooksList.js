@@ -7,8 +7,14 @@ import { Form } from 'react-bootstrap'
 
 const BooksList = () => {
   const { books, setBooks } = useContext(BooksContext);
-  const handleRemoveBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+  const handleRemoveBook = (_id) => {
+    fetch('http://localhost:8080/book/:'+_id, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {'Content-Type':'application/json'}  
+    }).then(response => response.json())
+    .then(data => {
+      setBooks(books.filter(elem => elem._id !== _id)); })
   };
 
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Axios from 'axios';
 
 import Header from '../components/Header';
 import AddBook from '../components/AddBook';
@@ -11,36 +12,38 @@ import WordsList from '../components/WordsList';
 import AddWord from '../components/AddWord';
 import EditWord from '../components/EditWord';
 import useLocalStorage from '../hooks/useLocalStorage';
+import useBackend from '../hooks/useBackend';
 import BooksContext from '../context/BooksContext';
 import WordsContext from '../context/WordsContext';
 
 import Login from '../components/Login';
-import useToken from '../hooks/useToken'
-
-const DATA = [{
-  wordname: "delienation",
-  type: ["verb"],
-  meaning: "noun - the action of describing or portraying something precisely; the action of indicating the exact position of a border or boundary",
-  example: "the artist's exquisite delineation of costume and jewellery",
-  additionalInfo: "the artist's exquisite delineation of costume and jewellery",
-  id: "1"
-},
-{
-  wordname: "mendacious",
-  type: ["adjective"],
-  meaning: "adjective - not telling the truth; lying",
-  example: "mendacious propaganda",
-  additionalInfo: "the artist's exquisite delineation of costume and jewellery",
-  id: "2"
-}
-]
+//import useToken from '../hooks/useToken'
 
 
 const AppRouter = () => {
-  const [books, setBooks] = useLocalStorage('books', []);
-  const [words, setWords] = useState(DATA);
+  //const [books2, setBooks2] = useLocalStorage('books', []);
+  const [words, setWords] = useState([]);
+  const [books, setBooks] = useState([]);
+  console.log(books);
 
-  const { token, setToken } = useToken();
+  useEffect(() => {
+    fetch('http://localhost:8080/words' )
+        .then(response => response.json())
+        .then(json => {
+            setWords(json);
+            
+      });
+      fetch('http://localhost:8080/books' )
+        .then(response => response.json())
+        .then(json => {
+            setBooks(json);
+      });
+  }, [] )
+
+
+  
+  
+  //const { token, setToken } = useToken();
   
 
   return (
@@ -52,7 +55,7 @@ const AppRouter = () => {
             <Switch>
               <Route component={BooksList} path="/books" exact={true} />
               <Route component={AddBook} path="/addBook" />
-              <Route component={EditBook} path="/editBook/:id" />
+              <Route component={EditBook} path="/editBook/:_id" />
               
             </Switch>
           </BooksContext.Provider>
@@ -61,7 +64,7 @@ const AppRouter = () => {
               <Route component={SingleWord} path="/word" exact={true} />
               <Route component={WordsList} path="/words" exact={true} />
               <Route component={AddWord} path="/addWord" />
-              <Route component={EditWord} path="/editWord/:id" />
+              <Route component={EditWord} path="/editWord/:_id" />
               
             </Switch>
           </WordsContext.Provider>

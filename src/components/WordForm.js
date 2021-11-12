@@ -9,14 +9,12 @@ const WordForm = (props) => {
       meaning: props.word ? props.word.meaning : '',
       example: props.word ? props.word.example : '',
       additionalInfo: props.word ? props.word.additionalInfo : '',
-      id: props.word ? props.word.id : uuidv4()
     };
   });
   const categories = ['noun', 'adjective', 'verb', 'other'];
   
   const [type, setType] = useState(props.word ? props.word.type : []);
   const handleChange = (val) => { 
-    console.log(val)
     setType(val); }
 
 
@@ -25,8 +23,11 @@ const WordForm = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    word.type = type;
-    props.handleOnSubmit(word);
+    if(props.isEditing) {
+      let _id = props.word._id;
+      props.handleOnSubmit({...word, type }, _id)
+    }
+    else props.handleOnSubmit({...word, type});
   };
 
   const handleInputChange = (event) => {
