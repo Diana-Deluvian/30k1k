@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useContext } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
+import AuthContext from '../context/AuthContext';
 import BookSelect from "./BookSelect";
 
 const BookForm = (props) => {
+  const {auth, setAuth} = useContext(AuthContext);
+  const {isAuth, noteToUser } = auth;
+  const [show, setShow] = useState(true);
   const [book, setBook] = useState(() => {
     return {
       bookname: props.book ? props.book.bookname : '',
@@ -13,9 +16,6 @@ const BookForm = (props) => {
       optionSelected: props.book ? props.book.optionSelected : null,
     };
   });
-
-
-  const [errorMsg, setErrorMsg] = useState('');
   const { bookname, author, source, additionalInfo, optionSelected } = book;
 
   const handleChange = (selected) => {
@@ -45,7 +45,12 @@ const BookForm = (props) => {
 
   return (
     <div className="book-form">
-      {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+      {!isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
+        <p>
+          {noteToUser}
+        </p>
+      </Alert> }
       <Form onSubmit={handleOnSubmit}>
         <Form.Group controlId="bookname">
           <Form.Label>Book Title</Form.Label>
@@ -95,7 +100,7 @@ const BookForm = (props) => {
         </Form.Group>
 
         
-        <Button variant="light" type="submit" className="submit-btn">
+        <Button variant="light" type="submit" className="submit-btn" disabled={!isAuth}>
           Submit
         </Button>
       </Form>

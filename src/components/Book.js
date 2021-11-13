@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 
 const Book = ({
@@ -13,7 +14,8 @@ const Book = ({
   handleRemoveBook
 }) => {
     const history = useHistory();
-
+    const {auth, setAuth} = useContext(AuthContext);
+    const {isAuth, noteToUser } = auth;
     const categories = optionSelected && optionSelected.map(option => option.value).join (", ")
   return (
     <Card style={{ maxWidth: '80ch' }} className="book">
@@ -28,7 +30,7 @@ const Book = ({
         <Button variant="light" onClick={() => history.push(`/editBook/${_id}`)}>
             Edit
         </Button>{' '}
-        <Button variant="dark" onClick={() => handleRemoveBook(_id)}>
+        <Button variant="dark" disabled={!isAuth} onClick={() => handleRemoveBook(_id)}>
           Delete
         </Button>
       </Card.Body>

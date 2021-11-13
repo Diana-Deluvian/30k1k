@@ -25,10 +25,7 @@ const AppRouter = () => {
   //const [books2, setBooks2] = useLocalStorage('books', []);
   const [words, setWords] = useState([]);
   const [books, setBooks] = useState([]);
-  const [auth, setAuth] = useState({
-    isAuth: false, 
-    noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
-  })
+  const [auth, setAuth] = useState({})
 
 
   useEffect(() => {
@@ -49,7 +46,13 @@ const AppRouter = () => {
       } )
         .then(res =>  res.json())
         .then(data => {
-          setAuth({isAuth:false, noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'})
+          if(data.hasOwnProperty('username')) {
+            setAuth({isAuth:true, noteToUser: null})
+          }
+          else setAuth({
+            isAuth: false, 
+            noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
+          })
         })
   }, [] )
 
