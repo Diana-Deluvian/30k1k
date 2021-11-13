@@ -64,7 +64,7 @@ const BookForm = (props) => {
           />
         </Form.Group>
         <Form.Label>Category:</Form.Label><br></br>
-        <BookSelect optionSelected={optionSelected} handleChange={handleChange} />
+        <BookSelect optionSelected={optionSelected} handleChange={handleChange} id="book-list-search" />
         <Form.Group controlId="author">
           <Form.Label>Book Author</Form.Label>
           <Form.Control

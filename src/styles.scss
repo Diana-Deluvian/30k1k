@@ -148,7 +148,7 @@ header {
   }
 
   &-form {
-    min-width: 60ch;
+    width: 60ch;
     * {
       margin: 0.5rem 0;
     }
@@ -161,10 +161,6 @@ header {
   display: flex;
   justify-content: center;
 }
-#book-list-search {
-  width: 40ch;
-}
-
 .login-form {
   display: flex;
   flex-direction: column;
@@ -193,3 +189,5 @@ header {
     margin: 0;
   }
 }
+
+@import "media";

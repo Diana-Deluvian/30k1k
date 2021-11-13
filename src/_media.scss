@@ -1,0 +1,31 @@
+@media (min-width: 1600px) {
+  :root {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .links {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    .link {
+      margin-bottom: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  .word,
+  .book {
+    &-form {
+      max-width: 40ch;
+    }
+  }
+  .d-inline-block {
+    min-width: 35ch;
+    max-width: 35ch;
+  }
+
+  #book-list-search {
+    max-width: 80%;
+  }
+}
