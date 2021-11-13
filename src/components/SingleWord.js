@@ -14,10 +14,10 @@ function randomWord(length) {
 
 const Word = () => {
   const { words, setWords } = useContext(WordsContext);
-  console.log(words);
-  const [word, setWord] = useState(words && words.at(-1) || {});
+  const [index, setIndex] = useState(words && words.length-1 || 0);
+  const [word, setWord] = useState(words && words.at(index) || {});
     //gets the last word
-    let {wordname, meaning, example, additionalInfo, type, id } = word; 
+  let {wordname, meaning, example, additionalInfo, type, id } = word; 
 
     
 
@@ -27,11 +27,16 @@ const Word = () => {
         {!_.isEmpty(words) ? (
           <div className="single-word">
             <h1>{wordname}</h1>
-            <p className="type">{type}</p>
+            <p className="type">{type.join(", ")}</p>
             <p className="definition">{meaning}</p>
             <p className="example">"{example}"</p>
             <p className="additionalInfo">{additionalInfo}</p>
-            <Button variant="light" onClick={ () => setWord(words.at(randomWord(words.length))) }>Random!</Button>
+            {words.length !== 1 && <Button variant="light" onClick={ () => {
+              let newIndex = randomWord(words.length);
+              while (index == newIndex) newIndex = randomWord(words.length);
+              setIndex(newIndex);
+              setWord(words.at(index))
+              } }>Random!</Button>}
           </div>
           ) : (
             <p className="message">No words available. Please add some words.</p>
