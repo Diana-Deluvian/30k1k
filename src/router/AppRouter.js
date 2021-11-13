@@ -15,6 +15,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import useBackend from '../hooks/useBackend';
 import BooksContext from '../context/BooksContext';
 import WordsContext from '../context/WordsContext';
+import AuthContext from '../context/AuthContext';
 
 import Login from '../components/Login';
 //import useToken from '../hooks/useToken'
@@ -24,7 +25,11 @@ const AppRouter = () => {
   //const [books2, setBooks2] = useLocalStorage('books', []);
   const [words, setWords] = useState([]);
   const [books, setBooks] = useState([]);
-  console.log(books);
+  const [auth, setAuth] = useState({
+    isAuth: false, 
+    noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
+  })
+
 
   useEffect(() => {
     fetch('http://localhost:8080/words' )
@@ -38,6 +43,14 @@ const AppRouter = () => {
         .then(json => {
             setBooks(json);
       });
+      fetch('http://localhost:8080/user',{
+        method: 'GET',
+        credentials: 'include'
+      } )
+        .then(res =>  res.json())
+        .then(data => {
+          setAuth({isAuth:false, noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'})
+        })
   }, [] )
 
 
@@ -50,6 +63,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <div className="myContainer">
         <Header />
+        <AuthContext.Provider value={{ auth, setAuth }}>
         <div className="main-content">
           <BooksContext.Provider value={{ books, setBooks }}>
             <Switch>
@@ -72,6 +86,7 @@ const AppRouter = () => {
             <Route component={Login} path="/login" exact={true} />
           </Switch>
         </div>
+        </AuthContext.Provider>
       </div> 
     </BrowserRouter>
   );
