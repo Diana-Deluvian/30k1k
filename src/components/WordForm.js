@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { Form, Button, ToggleButton, ToggleButtonGroup, ButtonGroup } from 'react-bootstrap';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useContext } from 'react';
+import { Form, Button, ToggleButton, ToggleButtonGroup, ButtonGroup, Alert } from 'react-bootstrap';
+import AuthContext from '../context/AuthContext';
+
 
 const WordForm = (props) => {
+  const {auth, setAuth} = useContext(AuthContext);
+  const {isAuth, noteToUser } = auth;
+  const [show, setShow] = useState(true);
   const [word, setWord] = useState(() => {
     return {
       wordname: props.word ? props.word.wordname : '',
@@ -16,9 +20,7 @@ const WordForm = (props) => {
   const [type, setType] = useState(props.word ? props.word.type : []);
   const handleChange = (val) => { 
     setType(val); }
-
-
-  const [errorMsg, setErrorMsg] = useState('');
+  
   const { wordname, meaning, example, additionalInfo } = word;
 
   const handleOnSubmit = (event) => {
@@ -37,13 +39,19 @@ const WordForm = (props) => {
           [name]: value
         }));
   };
+  
 
 
   
 
   return (
     <div className="word-form">
-      {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+      {!isAuth && show &&<Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
+        <p>
+          {noteToUser}
+        </p>
+      </Alert> }
       <Form onSubmit={handleOnSubmit}>
         <Form.Group controlId="wordname">
           <Form.Label>Word</Form.Label>
@@ -104,7 +112,7 @@ const WordForm = (props) => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Button variant="light" type="submit" className="submit-btn">
+        <Button variant="light" type="submit" className="submit-btn" disabled={!isAuth}>
           Submit
         </Button>
       </Form>

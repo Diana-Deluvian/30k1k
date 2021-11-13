@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 
 const Word = ({
@@ -13,7 +14,8 @@ const Word = ({
   handleRemoveWord
 }) => {
     const history = useHistory();
-    console.log(_id);
+    const {auth, setAuth} = useContext(AuthContext);
+    const {isAuth, noteToUser } = auth;
   return (
     <Card style={{ maxWidth: '80ch'}} className="word">
       <Card.Body>
@@ -26,7 +28,7 @@ const Word = ({
         <Button variant="light" onClick={() => history.push(`/editWord/${_id}`)}>
             Edit
         </Button>{' '}
-        <Button variant="dark" onClick={() => handleRemoveWord(_id)}>
+        <Button variant="dark" disabled={!isAuth} onClick={() => handleRemoveWord(_id)}>
           Delete
         </Button>
       </Card.Body>

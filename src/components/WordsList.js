@@ -1,10 +1,15 @@
 import _ from 'lodash';
 import Word from './Word';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import WordsContext from '../context/WordsContext';
+import {Alert} from 'react-bootstrap';
+import AuthContext from '../context/AuthContext';
 
 
 const WordsList = () => {
+  const {auth, setAuth} = useContext(AuthContext);
+  const {isAuth, noteToUser } = auth;
+  const [show, setShow] = useState(true);
   const { words, setWords } = useContext(WordsContext);
   const handleRemoveWord = (_id) => {
     fetch('http://localhost:8080/word/:'+_id, {
@@ -19,6 +24,13 @@ const WordsList = () => {
   return (
     <React.Fragment>
       <div className="word-list">
+      {!isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
+        <p>
+          {noteToUser}
+        </p>
+      </Alert> }
+
         {!_.isEmpty(words) ? (
           words.map((word) => (
             <Word key={word.id} {...word} handleRemoveWord={handleRemoveWord} />
