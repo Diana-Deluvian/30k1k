@@ -13,7 +13,8 @@ const BooksList = () => {
   const [show, setShow] = useState(true);
   const { books, setBooks } = useContext(BooksContext);
   const handleRemoveBook = (_id) => {
-    fetch('http://localhost:8080/book/:'+_id, {
+    console.log(_id);
+    fetch('http://localhost:8080/book/'+_id, {
       method: 'DELETE',
       credentials: 'include',
       headers: {'Content-Type':'application/json'}  
@@ -23,24 +24,33 @@ const BooksList = () => {
   };
 
   const [searchTerm, setSearchTerm] = useState('');
-
   const handleInputChange = (e) => setSearchTerm(e.target.value);
-
   let newBooks = books.filter(book => {
-    for(const property in book) 
-      if(book[property].toLowerCase().includes(searchTerm.toLowerCase())) return true
-  })
+    for(const property in book) {
+    if(Array.isArray(book[property])) {
+      let isFound = false
+      book[property].forEach(elem => {
+        if(elem.value.toLowerCase().includes(searchTerm.toLowerCase())) { isFound=true} 
+      });
+      if(isFound) return isFound;
+      //the return needs to happen outside the loop
+ }
+    else if(!Array.isArray(book[property])) {
+      if(book[property].toString().toLowerCase().includes(searchTerm.toLowerCase())) return true
+      // need to string because there's a __v number property
+      }
+  }})
 
   return (
     <React.Fragment>
       <div className="book-list">
-      {!isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+      {(!isAuth && show) ? <Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}
         </p>
-      </Alert> }
-      <Form.Group className="justify-content-center" controlId="searchTerm">
+      </Alert> : null }
+      <Form.Group className="justify-content-center">
           <Form.Control
             className="input-control mt-3 mb-2"
             id="book-list-search"

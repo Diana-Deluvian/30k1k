@@ -11,7 +11,7 @@ const EditBook = ({ history }) => {
 
   const handleOnSubmit = (book, _id) => {
     console.log(_id);
-    fetch('http://localhost:8080/book/:'+_id, {
+    fetch('http://localhost:8080/book/'+_id, {
       method: 'PUT',
       credentials: 'include',
       headers: {'Content-Type':'application/json'},

@@ -12,7 +12,7 @@ const WordsList = () => {
   const [show, setShow] = useState(true);
   const { words, setWords } = useContext(WordsContext);
   const handleRemoveWord = (_id) => {
-    fetch('http://localhost:8080/word/:'+_id, {
+    fetch('http://localhost:8080/word/'+_id, {
       method: 'DELETE',
       credentials: 'include',
       headers: {'Content-Type':'application/json'}  
