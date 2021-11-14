@@ -14,8 +14,8 @@ const Book = ({
   handleRemoveBook
 }) => {
     const history = useHistory();
-    const {auth, setAuth} = useContext(AuthContext);
-    const {isAuth, noteToUser } = auth;
+    const {auth} = useContext(AuthContext);
+    const {isAuth} = auth;
     const categories = optionSelected && optionSelected.map(option => option.value).join (", ")
   return (
     <Card style={{ maxWidth: '80ch' }} className="book">

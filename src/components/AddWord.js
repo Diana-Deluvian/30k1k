@@ -14,11 +14,9 @@ const AddWord = ({ history }) => {
       
     }).then(response => response.json())
     .then(data => {
-      console.log(data);
       setWords([data, ...words]); })
     history.push('/words');
   }
-
 
   return (
     <React.Fragment>

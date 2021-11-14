@@ -14,8 +14,8 @@ const Word = ({
   handleRemoveWord
 }) => {
     const history = useHistory();
-    const {auth, setAuth} = useContext(AuthContext);
-    const {isAuth, noteToUser } = auth;
+    const { auth } = useContext(AuthContext);
+    const { isAuth } = auth;
   return (
     <Card style={{ maxWidth: '80ch'}} className="word">
       <Card.Body>

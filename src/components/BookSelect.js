@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import { default as ReactSelect } from "react-select";
 
 import { components } from "react-select";
@@ -18,7 +17,6 @@ const categories = [
   ];
 
 const Option = (props) => {
-  console.log(props);
     return (
       <div >
         <components.Option {...props} >
@@ -35,54 +33,55 @@ const Option = (props) => {
 
   const colourStyles = {
     menuList: styles => ({
-        ...styles,
-        background: 'white'
+      ...styles,
+      background: 'white'
     }),
     option: (styles, {isFocused, isSelected}) => ({
-        ...styles,
-        background: isFocused
-            ? "gray"
-            : isSelected
-                ? 'black'
-                : undefined,
-        zIndex: 1
+      ...styles,
+      background: isFocused
+        ? "gray"
+        : isSelected
+          ? 'black'
+          : undefined,
+      zIndex: 1
     }),
     menu: base => ({
-        ...base,
-        zIndex: 100
+      ...base,
+      zIndex: 100
     })
-    }
+  }
 
 const BookSelect = (props) => {
-    const [optionSelected, setOptionSelected] = useState(props.optionSelected ? props.optionSelected : null);
+  const [optionSelected, setOptionSelected] = useState(props.optionSelected ? props.optionSelected : null);
 
-    const handleChange = (selected) => {
-      setOptionSelected(selected);
-      props.handleChange(selected);
-    }  
-      return (
-        <span
-          className="d-inline-block"
-          data-toggle="popover"
-          data-trigger="focus"
-          data-content="Please select account(s)"
-        >
-          <ReactSelect
-            options={categories}
-            isMulti
-            closeMenuOnSelect={false}
-            hideSelectedOptions={false}
-            components={{
-              Option
-            }}
-            onChange={handleChange}
-            allowSelectAll={true}
-            value={optionSelected}
-            styles={colourStyles}
-          />
-        </span>
-      );
-    }
+  const handleChange = (selected) => {
+    setOptionSelected(selected);
+    props.handleChange(selected);
+  }  
+
+  return (
+    <span
+      className="d-inline-block"
+      data-toggle="popover"
+      data-trigger="focus"
+      data-content="Please select account(s)"
+    >
+      <ReactSelect
+        options={categories}
+        isMulti
+        closeMenuOnSelect={false}
+        hideSelectedOptions={false}
+        components={{
+          Option
+        }}
+        onChange={handleChange}
+        allowSelectAll={true}
+        value={optionSelected}
+        styles={colourStyles}
+      />
+    </span>
+  );
+}
   
   
   export default BookSelect;

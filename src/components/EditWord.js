@@ -6,7 +6,6 @@ import WordsContext from '../context/WordsContext';
 const EditWord = ({ history }) => {
   const { words, setWords } = useContext(WordsContext);
   const { _id } = useParams();
-  console.log(_id)
   const wordToEdit = words.find((word) => word._id === _id);
 
   const handleOnSubmit = (word, _id) => {

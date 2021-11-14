@@ -8,12 +8,12 @@ import AuthContext from '../context/AuthContext';
 
 
 const BooksList = () => {
-  const {auth, setAuth} = useContext(AuthContext);
-  const {isAuth, noteToUser } = auth;
+  const { auth } = useContext(AuthContext);
+  const { isAuth, noteToUser } = auth;
   const [show, setShow] = useState(true);
   const { books, setBooks } = useContext(BooksContext);
+
   const handleRemoveBook = (_id) => {
-    console.log(_id);
     fetch('http://localhost:8080/book/'+_id, {
       method: 'DELETE',
       credentials: 'include',
@@ -25,7 +25,7 @@ const BooksList = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const handleInputChange = (e) => setSearchTerm(e.target.value);
-  let newBooks = books.filter(book => {
+  const newBooks = books.filter(book => {
     for(const property in book) {
     if(Array.isArray(book[property])) {
       let isFound = false
@@ -45,7 +45,9 @@ const BooksList = () => {
     <React.Fragment>
       <div className="book-list">
       {(!isAuth && show) ? <Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
+        <Alert.Heading>
+          Wait a second, you're not Diana :(
+        </Alert.Heading>
         <p>
           {noteToUser}
         </p>
@@ -67,7 +69,7 @@ const BooksList = () => {
             <Book key={book.id} {...book} handleRemoveBook={handleRemoveBook} />
           ))
         ) : (
-          <p className="message">No books available. Please add some books.</p>
+          <p className="message">No books available. Please check the server, or shake Diana's hand for accomplishing her goal.</p>
         )}
       </div>
     </React.Fragment>

@@ -6,7 +6,6 @@ const AddBook = ({ history }) => {
   const { books, setBooks } = useContext(BooksContext);
 
   const handleOnSubmit = (book) => {
-    console.log(book);
     fetch('http://localhost:8080/book', {
       method: 'POST',
       credentials: 'include',

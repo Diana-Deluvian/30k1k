@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Form, Button, ToggleButton, ToggleButtonGroup, ButtonGroup, Alert } from 'react-bootstrap';
+import { Form, Button, ToggleButton, ToggleButtonGroup, Alert } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 
 
 const WordForm = (props) => {
-  const {auth, setAuth} = useContext(AuthContext);
-  const {isAuth, noteToUser } = auth;
+  const { auth } = useContext(AuthContext);
+  const { isAuth, noteToUser } = auth;
   const [show, setShow] = useState(true);
   const [word, setWord] = useState(() => {
     return {

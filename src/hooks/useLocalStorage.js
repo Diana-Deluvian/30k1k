@@ -18,3 +18,5 @@ const useLocalStorage = (key, initialValue) => {
 };
 
 export default useLocalStorage;
+
+//was used in development, keeping it for debugging / display reasons

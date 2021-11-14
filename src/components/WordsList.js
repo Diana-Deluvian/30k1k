@@ -2,15 +2,16 @@ import _ from 'lodash';
 import Word from './Word';
 import React, { useContext, useState } from 'react';
 import WordsContext from '../context/WordsContext';
-import {Alert} from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 
 
 const WordsList = () => {
-  const {auth, setAuth} = useContext(AuthContext);
-  const {isAuth, noteToUser } = auth;
+  const { auth } = useContext(AuthContext);
+  const { isAuth, noteToUser } = auth;
   const [show, setShow] = useState(true);
   const { words, setWords } = useContext(WordsContext);
+  
   const handleRemoveWord = (_id) => {
     fetch('http://localhost:8080/word/'+_id, {
       method: 'DELETE',

@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { Button } from 'react-bootstrap';
 
 function randomWord(length) {
+
   let weight = Math.ceil(Math.random() * Math.ceil(Math.log(length)));
 
   return Math.floor(Math.random() * (Math.floor(length/weight)));
@@ -13,33 +14,27 @@ function randomWord(length) {
 }
 
 const Word = () => {
-  const { words, setWords } = useContext(WordsContext);
-  const [index, setIndex] = useState(!_.isEmpty(words) && words.length-1 || 0);
-    
+  const { words } = useContext(WordsContext);
+  const [index, setIndex] = useState((!_.isEmpty(words) && words.length-1) || 0);
 
   return (
-    <React.Fragment>
-      
-        {!_.isEmpty(words) ? (
-          <div className="single-word">
-            <h1>{words.at(index).wordname}</h1>
-            <p className="type">{words.at(index).type && words.at(index).type.join(", ")}</p>
-            <p className="definition">{words.at(index).meaning}</p>
-            <p className="example">"{words.at(index).example}"</p>
-            <p className="additionalInfo">{words.at(index).additionalInfo}</p>
-            {words.length !== 1 && <Button variant="light" onClick={ () => {
-              let newIndex = randomWord(words.length);
-              console.log(newIndex, index);
-              while (index == newIndex) newIndex = randomWord(words.length);
-              console.log(newIndex, index);
-              setIndex(newIndex);
-              } }>Random!</Button>}
-          </div>
-          ) : (
-            <p className="message">No words available. Please add some words.</p>
-          )}
-
-          
+    <React.Fragment>  
+      {!_.isEmpty(words) ? (
+        <div className="single-word">
+          <h1>{words.at(index).wordname}</h1>
+          <p className="type">{words.at(index).type && words.at(index).type.join(", ")}</p>
+          <p className="definition">{words.at(index).meaning}</p>
+          <p className="example">"{words.at(index).example}"</p>
+          <p className="additionalInfo">{words.at(index).additionalInfo}</p>
+          {words.length !== 1 && <Button variant="light" onClick={ () => {
+            let newIndex = randomWord(words.length);
+            while (index === newIndex) newIndex = randomWord(words.length);
+            setIndex(newIndex);
+            } }>Random!</Button>}
+        </div>
+        ) : (
+          <p className="message">No words available. Please add some words.</p>
+        )}         
   </React.Fragment> )
 
 }

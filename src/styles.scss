@@ -1,5 +1,5 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee+Shade&family=Concert+One&family=Creepster&family=Goblin+One&family=Milonga&family=New+Rocker&family=Old+Standard+TT&family=Pirata+One&family=Ruslan+Display&family=Saira+Stencil+One&family=Sancreek&family=UnifrakturCook:wght@700&display=swap");
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee+Shade&family=Concert+One&family=Creepster&family=Goblin+One&family=Milonga&family=New+Rocker&family=Old+Standard+TT&family=Pirata+One&family=Ruslan+Display&family=Saira+Stencil+One&family=Sancreek&family=UnifrakturCook:wght@700&display=swap');
 
 body {
   color: white;
@@ -16,7 +16,7 @@ body {
 header {
   h1 {
     font-size: 4rem;
-    font-family: "Saira Stencil One";
+    font-family: 'Saira Stencil One';
     padding: 0.5rem;
     span {
       margin: 0 0.5rem;
@@ -59,13 +59,17 @@ header {
   align-items: center;
 }
 
+.message {
+  max-width: 60ch;
+}
+
 .single-word {
   max-width: 80ch;
   justify-self: center;
   margin-top: 3rem;
   h1 {
     font-size: 3rem;
-    font-family: "Pirata One";
+    font-family: 'Pirata One';
   }
   p {
     font-size: 1.3rem;
@@ -96,7 +100,7 @@ header {
 
   &-title {
     margin-bottom: 0;
-    font-family: "Pirata One";
+    font-family: 'Pirata One';
     font-size: 1.8rem;
   }
 
@@ -118,7 +122,7 @@ header {
     .btn {
       box-shadow: none !important;
     }
-    label[for="radio-1"]:focus {
+    label[for='radio-1']:focus {
       background-color: #ffffff !important;
     }
   }
@@ -133,7 +137,7 @@ header {
 
   &-title {
     margin-bottom: 0;
-    font-family: "Pirata One";
+    font-family: 'Pirata One';
     font-size: 1.8rem;
   }
 
@@ -194,4 +198,4 @@ header {
   max-width: 60ch;
 }
 
-@import "media";
+@import 'media';

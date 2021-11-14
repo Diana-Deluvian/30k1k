@@ -4,8 +4,8 @@ import AuthContext from '../context/AuthContext';
 import BookSelect from "./BookSelect";
 
 const BookForm = (props) => {
-  const {auth, setAuth} = useContext(AuthContext);
-  const {isAuth, noteToUser } = auth;
+  const { auth } = useContext(AuthContext);
+  const { isAuth, noteToUser } = auth;
   const [show, setShow] = useState(true);
   const [book, setBook] = useState(() => {
     return {
@@ -46,7 +46,9 @@ const BookForm = (props) => {
   return (
     <div className="book-form">
       {!isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
+        <Alert.Heading>
+          Wait a second, you're not Diana :(
+        </Alert.Heading>
         <p>
           {noteToUser}
         </p>
@@ -98,8 +100,6 @@ const BookForm = (props) => {
             onChange={handleInputChange}
           />
         </Form.Group>
-
-        
         <Button variant="light" type="submit" className="submit-btn" disabled={!isAuth}>
           Submit
         </Button>

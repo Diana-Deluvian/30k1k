@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Axios from 'axios';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 
 import Header from '../components/Header';
 import AddBook from '../components/AddBook';
@@ -11,18 +11,15 @@ import SingleWord from '../components/SingleWord';
 import WordsList from '../components/WordsList';
 import AddWord from '../components/AddWord';
 import EditWord from '../components/EditWord';
-import useLocalStorage from '../hooks/useLocalStorage';
-import useBackend from '../hooks/useBackend';
+
 import BooksContext from '../context/BooksContext';
 import WordsContext from '../context/WordsContext';
 import AuthContext from '../context/AuthContext';
 
 import Login from '../components/Login';
-//import useToken from '../hooks/useToken'
 
 
 const AppRouter = () => {
-  //const [books2, setBooks2] = useLocalStorage('books', []);
   const [words, setWords] = useState([]);
   const [books, setBooks] = useState([]);
   const [auth, setAuth] = useState({})
@@ -59,7 +56,7 @@ const AppRouter = () => {
 
   
   
-  //const { token, setToken } = useToken();
+
   
 
   return (
