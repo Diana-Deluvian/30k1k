@@ -4,7 +4,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .links {
     font-size: 1.5rem;
     display: flex;
@@ -26,6 +26,6 @@
   }
 
   #book-list-search {
-    max-width: 80%;
+    max-width: 50ch;
   }
 }

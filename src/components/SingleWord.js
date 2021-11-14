@@ -14,11 +14,7 @@ function randomWord(length) {
 
 const Word = () => {
   const { words, setWords } = useContext(WordsContext);
-  const [index, setIndex] = useState(words && words.length-1 || 0);
-  const [word, setWord] = useState(words && words.at(index) || {});
-    //gets the last word
-  let {wordname, meaning, example, additionalInfo, type, id } = word; 
-
+  const [index, setIndex] = useState(!_.isEmpty(words) && words.length-1 || 0);
     
 
   return (
@@ -26,16 +22,17 @@ const Word = () => {
       
         {!_.isEmpty(words) ? (
           <div className="single-word">
-            <h1>{wordname}</h1>
-            <p className="type">{type.join(", ")}</p>
-            <p className="definition">{meaning}</p>
-            <p className="example">"{example}"</p>
-            <p className="additionalInfo">{additionalInfo}</p>
+            <h1>{words.at(index).wordname}</h1>
+            <p className="type">{words.at(index).type && words.at(index).type.join(", ")}</p>
+            <p className="definition">{words.at(index).meaning}</p>
+            <p className="example">"{words.at(index).example}"</p>
+            <p className="additionalInfo">{words.at(index).additionalInfo}</p>
             {words.length !== 1 && <Button variant="light" onClick={ () => {
               let newIndex = randomWord(words.length);
+              console.log(newIndex, index);
               while (index == newIndex) newIndex = randomWord(words.length);
+              console.log(newIndex, index);
               setIndex(newIndex);
-              setWord(words.at(index))
               } }>Random!</Button>}
           </div>
           ) : (
