@@ -10,7 +10,7 @@ const EditBook = ({ history }) => {
 
   const handleOnSubmit = (book, _id) => {
 
-    fetch('http://localhost:8080/book/'+_id, {
+    fetch('https://server30k-1k.herokuapp.com/book/'+_id, {
       method: 'PUT',
       credentials: 'include',
       headers: {'Content-Type':'application/json'},

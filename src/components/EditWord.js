@@ -9,7 +9,7 @@ const EditWord = ({ history }) => {
   const wordToEdit = words.find((word) => word._id === _id);
 
   const handleOnSubmit = (word, _id) => {
-    fetch('http://localhost:8080/word/'+_id, {
+    fetch('https://server30k-1k.herokuapp.com/word/'+_id, {
       method: 'PUT',
       credentials: 'include',
       headers: {'Content-Type':'application/json'},

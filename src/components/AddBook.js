@@ -6,7 +6,7 @@ const AddBook = ({ history }) => {
   const { books, setBooks } = useContext(BooksContext);
 
   const handleOnSubmit = (book) => {
-    fetch('http://localhost:8080/book', {
+    fetch('https://server30k-1k.herokuapp.com/book', {
       method: 'POST',
       credentials: 'include',
       headers: {'Content-Type':'application/json'},

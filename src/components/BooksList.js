@@ -14,7 +14,7 @@ const BooksList = () => {
   const { books, setBooks } = useContext(BooksContext);
 
   const handleRemoveBook = (_id) => {
-    fetch('http://localhost:8080/book/'+_id, {
+    fetch('https://server30k-1k.herokuapp.com/book/'+_id, {
       method: 'DELETE',
       credentials: 'include',
       headers: {'Content-Type':'application/json'}  

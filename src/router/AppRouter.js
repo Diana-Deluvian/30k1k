@@ -26,18 +26,18 @@ const AppRouter = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost:8080/words' )
+    fetch('https://server30k-1k.herokuapp.com/words' )
         .then(response => response.json())
         .then(json => {
             setWords(json);
             
       });
-      fetch('http://localhost:8080/books' )
+      fetch('https://server30k-1k.herokuapp.com/books' )
         .then(response => response.json())
         .then(json => {
             setBooks(json);
       });
-      fetch('http://localhost:8080/user',{
+      fetch('https://server30k-1k.herokuapp.com/user',{
         method: 'GET',
         credentials: 'include'
       } )

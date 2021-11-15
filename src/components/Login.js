@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 //import PropTypes from 'prop-types';
 
 const loginUser = (username, password) => {
-  fetch('http://localhost:8080/login', {
+  fetch('https://server30k-1k.herokuapp.com/login', {
     method: 'POST',
     credentials: 'include',
     headers: {

@@ -13,7 +13,7 @@ const WordsList = () => {
   const { words, setWords } = useContext(WordsContext);
   
   const handleRemoveWord = (_id) => {
-    fetch('http://localhost:8080/word/'+_id, {
+    fetch('https://server30k-1k.herokuapp.com/word/'+_id, {
       method: 'DELETE',
       credentials: 'include',
       headers: {'Content-Type':'application/json'}  

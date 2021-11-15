@@ -6,7 +6,7 @@ const AddWord = ({ history }) => {
   const { words, setWords } = useContext(WordsContext);
 
   const handleOnSubmit = (word) => {
-    fetch('http://localhost:8080/word', {
+    fetch('https://server30k-1k.herokuapp.com/word', {
       method: 'POST',
       credentials: 'include',
       headers: {'Content-Type':'application/json'},
