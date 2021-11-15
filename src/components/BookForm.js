@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 import BookSelect from "./BookSelect";
+import _ from 'lodash';
 
 const BookForm = (props) => {
   const { auth } = useContext(AuthContext);
@@ -45,14 +46,14 @@ const BookForm = (props) => {
 
   return (
     <div className="book-form">
-      {!isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>
-          Wait a second, you're not Diana :(
-        </Alert.Heading>
+      {!_.isEmpty(auth) ? 
+      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}
         </p>
-      </Alert> }
+      </Alert> 
+       : (<> </>) }
       <Form onSubmit={handleOnSubmit}>
         <Form.Group controlId="bookname">
           <Form.Label>Book Title</Form.Label>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, ToggleButton, ToggleButtonGroup, Alert } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
+import _ from 'lodash';
 
 
 const WordForm = (props) => {
@@ -46,12 +47,14 @@ const WordForm = (props) => {
 
   return (
     <div className="word-form">
-      {!isAuth && show &&<Alert variant="danger" onClose={() => setShow(false)} dismissible>
+      {!_.isEmpty(auth) ? 
+      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}
         </p>
-      </Alert> }
+      </Alert> 
+       : (<> </>) }
       <Form onSubmit={handleOnSubmit}>
         <Form.Group controlId="wordname">
           <Form.Label>Word</Form.Label>

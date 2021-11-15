@@ -41,9 +41,20 @@ const AppRouter = () => {
         method: 'GET',
         credentials: 'include'
       } )
-        .then(res =>  res.json())
+        .then(res =>  {
+          try { 
+            res.json();
+          }
+          catch(err) {
+            setAuth({
+              isAuth: false, 
+              noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
+            })
+          }
+        })
         .then(data => {
-          if(data.hasOwnProperty('username')) {
+          console.log(data);
+          if(data !== undefined && data.hasOwnProperty('username')) {
             setAuth({isAuth:true, noteToUser: null})
           }
           else setAuth({
@@ -54,7 +65,6 @@ const AppRouter = () => {
   }, [] )
 
 
-  
   
 
   

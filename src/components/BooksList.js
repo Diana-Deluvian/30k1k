@@ -44,14 +44,15 @@ const BooksList = () => {
   return (
     <React.Fragment>
       <div className="book-list">
-      {(!isAuth && show) ? <Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>
-          Wait a second, you're not Diana :(
-        </Alert.Heading>
+      
+      {!_.isEmpty(auth) ? 
+      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}
         </p>
-      </Alert> : null }
+      </Alert> 
+       : (<> </>) }
       <Form.Group className="justify-content-center">
           <Form.Control
             className="input-control mt-3 mb-2"

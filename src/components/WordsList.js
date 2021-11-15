@@ -25,12 +25,14 @@ const WordsList = () => {
   return (
     <React.Fragment>
       <div className="word-list">
-      {!isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+      {!_.isEmpty(auth) ? 
+      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}
         </p>
-      </Alert> }
+      </Alert> 
+       : (<> </>) }
 
         {!_.isEmpty(words) ? (
           words.map((word) => (
