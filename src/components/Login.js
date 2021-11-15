@@ -14,13 +14,13 @@ const loginUser = (username, password) => {
     .then(data => {
       console.log(data);
     })
-  }
+}
 
 
 const Login = () => {
-  const [login, setLogin] = useState();
+  const [login, setLogin] = useState({username: '', password: ''});
 
-  const {username, password} = login;
+  const { username, password } = login;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -31,14 +31,14 @@ const Login = () => {
   };
 
   const handleSubmit = async e => {
-  e.preventDefault();
-  loginUser(login);
+    e.preventDefault();
+    loginUser(login);
 
   }
 
   return (
     <div className="login-form">
-    <h2>Please log in!</h2>
+      <h2>Please log in!</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="username">
           <Form.Control

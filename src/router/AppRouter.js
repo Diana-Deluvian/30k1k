@@ -43,7 +43,7 @@ const AppRouter = () => {
       } )
         .then(res =>  {
           try { 
-            res.json();
+            return res.json();
           }
           catch(err) {
             setAuth({
