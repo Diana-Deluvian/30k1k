@@ -40,9 +40,10 @@ const AppRouter = () => {
         method: 'GET',
         credentials: 'include'
       } )
-        .then((res) => {
+        .then(function(res){
           try {
-             return JSON.parse(res);
+            console.log(res);
+            return res.json();
           }
           catch(err) {
             setAuth({

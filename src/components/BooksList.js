@@ -54,7 +54,7 @@ const BooksList = () => {
         </p>
       </Alert> 
        : (<> </>) }
-      <Form.Group className="justify-content-center">
+      <Form.Group className="justify-content-center" style={{ width: '22rem', margin:'auto' }}>
           <Form.Control
             className="input-control mt-3 mb-2"
             id="book-list-search"
