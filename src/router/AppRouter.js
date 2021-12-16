@@ -29,8 +29,7 @@ const AppRouter = () => {
     fetch('https://server30k-1k.herokuapp.com/words' )
         .then(response => response.json())
         .then(json => {
-            setWords(json);
-            
+            setWords(json);            
       });
       fetch('https://server30k-1k.herokuapp.com/books' )
         .then(response => response.json())
@@ -41,24 +40,26 @@ const AppRouter = () => {
         method: 'GET',
         credentials: 'include'
       } )
-        .then(res =>  {
-          try { 
-            return res.json();
+        .then((res) => {
+          try {
+             return JSON.parse(res);
           }
           catch(err) {
             setAuth({
-              isAuth: false, 
+              isAuth: false,
+              showErr:true, 
               noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
             })
           }
-        })
+        })          
         .then(data => {
           console.log(data);
           if(data !== undefined && data.hasOwnProperty('username')) {
-            setAuth({isAuth:true, noteToUser: null})
+            setAuth({isAuth:true, showErr:false, noteToUser: null})
           }
           else setAuth({
             isAuth: false, 
+            showErr:true,
             noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
           })
         })

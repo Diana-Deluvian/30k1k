@@ -5,8 +5,8 @@ import _ from 'lodash';
 
 
 const WordForm = (props) => {
-  const { auth } = useContext(AuthContext);
-  const { isAuth, noteToUser } = auth;
+  const { auth, setAuth } = useContext(AuthContext);
+  const { isAuth, noteToUser, showErr } = auth;
   const [show, setShow] = useState(true);
   const [word, setWord] = useState(() => {
     return {
@@ -48,7 +48,8 @@ const WordForm = (props) => {
   return (
     <div className="word-form">
       {!_.isEmpty(auth) ? 
-      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+      !isAuth && showErr &&<Alert style={{maxWidth: '60ch'}} variant="danger" 
+      onClose={() => setAuth((prevState => ({...prevState, showErr: false})))} dismissible>
         <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}

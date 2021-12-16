@@ -7,9 +7,8 @@ import AuthContext from '../context/AuthContext';
 
 
 const WordsList = () => {
-  const { auth } = useContext(AuthContext);
-  const { isAuth, noteToUser } = auth;
-  const [show, setShow] = useState(true);
+  const { auth, setAuth } = useContext(AuthContext);
+  const { isAuth, noteToUser, showErr  } = auth;
   const { words, setWords } = useContext(WordsContext);
   
   const handleRemoveWord = (_id) => {
@@ -26,7 +25,8 @@ const WordsList = () => {
     <React.Fragment>
       <div className="word-list">
       {!_.isEmpty(auth) ? 
-      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+      !isAuth && showErr &&<Alert style={{maxWidth: '60ch', margin: 'auto'}} variant="danger" 
+      onClose={() => setAuth((prevState => ({...prevState, showErr: false})))} dismissible>
         <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}

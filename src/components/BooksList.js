@@ -8,8 +8,8 @@ import AuthContext from '../context/AuthContext';
 
 
 const BooksList = () => {
-  const { auth } = useContext(AuthContext);
-  const { isAuth, noteToUser } = auth;
+  const { auth, setAuth } = useContext(AuthContext);
+  const { isAuth, noteToUser, showErr } = auth;
   const [show, setShow] = useState(true);
   const { books, setBooks } = useContext(BooksContext);
 
@@ -46,7 +46,8 @@ const BooksList = () => {
       <div className="book-list">
       
       {!_.isEmpty(auth) ? 
-      !isAuth && show &&<Alert style={{maxWidth: '60ch'}} variant="danger" onClose={() => setShow(false)} dismissible>
+      !isAuth && showErr &&<Alert style={{maxWidth: '60ch', margin: 'auto'}} variant="danger" 
+      onClose={() => setAuth((prevState => ({...prevState, showErr: false})))} dismissible>
         <Alert.Heading>Wait a second, you're not Diana :(</Alert.Heading>
         <p>
           {noteToUser}

@@ -51,7 +51,12 @@ const Header = () => {
       if (navigation === 'login') { return  }
 //this is a bit of a hack, it will render the login component
 
-      return <h1>Please select a category!</h1>
+      return (
+      <React.Fragment>
+        <h1>Please select a category!</h1>
+        <p> (Click on one of the numbers above) </p>
+        </React.Fragment>
+      )
       })()}
     </header>
   );
