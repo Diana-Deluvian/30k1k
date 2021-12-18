@@ -25,7 +25,7 @@ const AppRouter = () => {
   const [auth, setAuth] = useState({})
 
 
-  useEffect(() => {
+  useEffect(async () => {
     fetch('https://server30k-1k.herokuapp.com/words' )
         .then(response => response.json())
         .then(json => {
@@ -36,23 +36,16 @@ const AppRouter = () => {
         .then(json => {
             setBooks(json);
       });
+
       fetch('https://server30k-1k.herokuapp.com/user',{
         method: 'GET',
         credentials: 'include'
-      } )
+        })
         .then(function(res){
-          try {
             console.log(res);
             return res.json();
           }
-          catch(err) {
-            setAuth({
-              isAuth: false,
-              showErr:true, 
-              noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
-            })
-          }
-        })          
+        )          
         .then(data => {
           console.log(data);
           if(data !== undefined && data.hasOwnProperty('username')) {
@@ -64,6 +57,13 @@ const AppRouter = () => {
             noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
           })
         })
+        .catch((err) => {
+          setAuth({
+            isAuth: false,
+            showErr:true, 
+            noteToUser: 'Please be aware that, as you are not Diana, you\'re not authorized to add posts or make any changes to this project. You\'re here for viewing purposes only.'
+          })
+        });
   }, [] )
 
 
