@@ -18,11 +18,11 @@ The backend is built in the NodeJS environment, using Express as the framework, 
 
 In the project directory, you can run:
 
-#### `yarn install`
+#### `npm install`
 
 Installs all of the dependencies needed to run this project
 
-#### `yarn start`
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
