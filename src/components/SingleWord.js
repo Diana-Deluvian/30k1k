@@ -16,16 +16,17 @@ function randomWord(length) {
 const Word = () => {
   const { words } = useContext(WordsContext);
   const [index, setIndex] = useState((!_.isEmpty(words) && words.length-1) || 0);
+  console.log(words[index]);   
 
   return (
     <React.Fragment>  
       {!_.isEmpty(words) ? (
         <div className="single-word">
-          <h1>{words.at(index).wordname}</h1>
-          <p className="type">{words.at(index).type && words.at(index).type.join(", ")}</p>
-          <p className="definition">{words.at(index).meaning}</p>
-          <p className="example">"{words.at(index).example}"</p>
-          <p className="additionalInfo">{words.at(index).additionalInfo}</p>
+          <h1>{words[index].wordname}</h1>
+          <p className="type">{words[index].type && words[index].type.join(", ")}</p>
+          <p className="definition">{words[index].meaning}</p>
+          <p className="example">"{words[index].example}"</p>
+          <p className="additionalInfo">{words[index].additionalInfo}</p>
           {words.length !== 1 && <Button variant="light" onClick={ () => {
             let newIndex = randomWord(words.length);
             while (index === newIndex) newIndex = randomWord(words.length);
@@ -33,7 +34,7 @@ const Word = () => {
             } }>Random!</Button>}
         </div>
         ) : (
-          <p className="message">No words available. Please add some words.</p>
+          <p className="message">Words are still loading, please be patient.</p>
         )}         
   </React.Fragment> )
 
