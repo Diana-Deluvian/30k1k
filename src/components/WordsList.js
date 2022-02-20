@@ -14,7 +14,10 @@ const WordsList = () => {
     fetch('https://server30k-1k.herokuapp.com/word/' + _id, {
       method: 'DELETE',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('30k1kAuthToken'),
+      },
     })
       .then((response) => response.json())
       .then((data) => {

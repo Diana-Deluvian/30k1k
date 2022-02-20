@@ -15,8 +15,7 @@ function randomWord(length) {
 
 const Word = () => {
   const { words } = useContext(WordsContext);
-  const [index, setIndex] = useState((!_.isEmpty(words) && words.length-1) || 0);
-  console.log(words[index]);   
+  const [index, setIndex] = useState((!_.isEmpty(words) && words.length-1) || 0);   
 
   return (
     <React.Fragment>  

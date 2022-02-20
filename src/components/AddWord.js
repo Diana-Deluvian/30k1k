@@ -9,14 +9,18 @@ const AddWord = ({ history }) => {
     fetch('https://server30k-1k.herokuapp.com/word', {
       method: 'POST',
       credentials: 'include',
-      headers: {'Content-Type':'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('30k1kAuthToken'),
+      },
       body: JSON.stringify(word),
-      
-    }).then(response => response.json())
-    .then(data => {
-      setWords([data, ...words]); })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setWords([data, ...words]);
+      });
     history.push('/words');
-  }
+  };
 
   return (
     <React.Fragment>

@@ -7,18 +7,16 @@ const loginUser = (username, password) => {
     method: 'POST',
     credentials: 'include',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(username, password)
+    body: JSON.stringify(username, password),
   })
-    .then(data => {
-      console.log(data);
-    })
-}
-
+    .then((response) => response.json())
+    .then((data) => localStorage.setItem('30k1kAuthToken', data.token));
+};
 
 const Login = () => {
-  const [login, setLogin] = useState({username: '', password: ''});
+  const [login, setLogin] = useState({ username: '', password: '' });
 
   const { username, password } = login;
 
@@ -26,46 +24,45 @@ const Login = () => {
     const { name, value } = event.target;
     setLogin((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     loginUser(login);
-
-  }
+  };
 
   return (
-    <div className="login-form">
+    <div className='login-form'>
       <h2>Please log in!</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="username">
+        <Form.Group controlId='username'>
           <Form.Control
-            className="input-control"
-            type="text"
-            name="username"
+            className='input-control'
+            type='text'
+            name='username'
             value={username}
-            placeholder="username"
+            placeholder='username'
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Form.Group controlId="password">
+        <Form.Group controlId='password'>
           <Form.Control
-            className="input-control"
-            type="password"
-            name="password"
+            className='input-control'
+            type='password'
+            name='password'
             value={password}
-            placeholder="password"
+            placeholder='password'
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Button variant="light" type="submit" className="submit-btn">
+        <Button variant='light' type='submit' className='submit-btn'>
           Login
         </Button>
       </Form>
     </div>
   );
-}
+};
 
 export default Login;

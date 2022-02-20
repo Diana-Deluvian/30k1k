@@ -9,20 +9,29 @@ const EditWord = ({ history }) => {
   const wordToEdit = words.find((word) => word._id === _id);
 
   const handleOnSubmit = (word, _id) => {
-    fetch('https://server30k-1k.herokuapp.com/word/'+_id, {
+    fetch('https://server30k-1k.herokuapp.com/word/' + _id, {
       method: 'PUT',
       credentials: 'include',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(word),  
-    }).then(response => response.json())
-    .then(data => {
-      setWords([data, ...words.filter(elem => elem._id !== _id)]); })
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('30k1kAuthToken'),
+      },
+      body: JSON.stringify(word),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setWords([data, ...words.filter((elem) => elem._id !== _id)]);
+      });
     history.push('/words');
-  }
+  };
 
   return (
     <div>
-      <WordForm word={wordToEdit} handleOnSubmit={handleOnSubmit} isEditing={true} />
+      <WordForm
+        word={wordToEdit}
+        handleOnSubmit={handleOnSubmit}
+        isEditing={true}
+      />
     </div>
   );
 };
